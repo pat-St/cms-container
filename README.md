@@ -1,1 +1,1 @@
-# cms-container
+# Backend for content management service
