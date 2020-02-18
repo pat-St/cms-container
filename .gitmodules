@@ -1,0 +1,12 @@
+[submodule "cms-frontend"]
+	path = cms-frontend
+	url = https://github.com/pat-St/cms-frontend
+[submodule "cms-backend"]
+	path = cms-backend
+	url = https://github.com/pat-St/cms-backend
+[submodule "cms-frontend-api"]
+	path = cms-frontend-api
+	url = https://github.com/pat-St/cms-frontend-api
+[submodule "cms-database"]
+	path = cms-database
+	url = https://github.com/pat-St/cms-database
