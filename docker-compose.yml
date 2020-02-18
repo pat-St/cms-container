@@ -1,30 +1,28 @@
 version: '3'
 services:
   db:
-    build: ./database
+    build: ./cms-database/.
     volumes:
       - container-volume:/var/lib/mysql
-      - ./database/database_content/current_database.sql:/docker-entrypoint-initdb.d/dump.sql
+      - ./cms-database/database_content/current_database.sql:/docker-entrypoint-initdb.d/dump.sql
     ports:
       - "3306:3306"
   php:
-    build: ./frontend-api
+    build: ./cms-frontend-api/.
     ports:
       - "80:80"
   backend:
-    build: ./backend
+    build: ./cms-backend/.
     ports:
-      - "8001:8000"
+      - "8001:8001"
     environment:
       - ROCKET_ENV=prod
       - DATABASE_URL=mysql://root:pass@db:3306/ferienwvk_db1
   frontend:
-     build: ./frontend
+     build: ./cms-frontend/.
      ports:
       - "4200:4200" 
-
 volumes:
   container-volume:
-
 #networks:
 #  intra-network:
