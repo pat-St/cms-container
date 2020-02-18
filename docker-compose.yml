@@ -4,9 +4,12 @@ services:
     build: ./cms-database/.
     volumes:
       - container-volume:/var/lib/mysql
-      - ./cms-database/database_content/current_database.sql:/docker-entrypoint-initdb.d/dump.sql
+      - ./db-content/schema-with-example.sql:/docker-entrypoint-initdb.d/dump.sql
     ports:
       - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=ferienwvk_db1
+      - MYSQL_ROOT_PASSWORD=pass
   php:
     build: ./cms-frontend-api/.
     ports:
@@ -17,11 +20,14 @@ services:
       - "8001:8001"
     environment:
       - ROCKET_ENV=prod
+      - ROCKET_PORT=8001
       - DATABASE_URL=mysql://root:pass@db:3306/ferienwvk_db1
   frontend:
      build: ./cms-frontend/.
      ports:
-      - "4200:4200" 
+      - "8080:8080" 
+     environment:
+      - BACKEND_API_URL=http://localhost:8001/
 volumes:
   container-volume:
 #networks:
