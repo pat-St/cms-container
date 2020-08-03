@@ -1,10 +1,11 @@
-version: '3'
+version: '3.8'
 services:
   db:
-    build: ./cms-database/.
+    image: mariadb:latest
     volumes:
       - container-volume:/var/lib/mysql
-      - ./db-content/schema-with-example.sql:/docker-entrypoint-initdb.d/dump.sql
+      - ./cms-database/database_content/current_database.sql:/docker-entrypoint-initdb.d/a1_schema.sql
+      - ./cms-database/database_content/user_content.sql:/docker-entrypoint-initdb.d/a2_user.sql
     ports:
       - "3306:3306"
     environment:
